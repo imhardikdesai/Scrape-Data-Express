@@ -24,9 +24,12 @@ router.get('/apmc', (req, res) => {
     })
 })
 
-// app.listen(3000, () => {
-//     console.log('Scraper running on port 3000')
-// })
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000/");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.use('/', router)
 
 module.exports.handler = serverless(app)
